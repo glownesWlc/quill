@@ -9968,7 +9968,22 @@ var Toolbar = function (_Module) {
     });
     _this.quill.on(_quill2.default.events.EDITOR_CHANGE, function (type, range) {
       if (type === _quill2.default.events.SELECTION_CHANGE) {
-        _this.update(range);
+          if(event && event != undefined && event.keyCode == 13 && event.code == 'Enter')
+		  {
+			  _this.controls.forEach(function (pair) {
+				  if(pair[0]=='header') {
+					 if(pair[1].value > 0)
+					 {
+						pair[1].value = '';
+						_this.controls[2][1].value = '13px';
+						_this.controls[0][1].value = 'calibri';
+						_this.controls[6][1].value = '';
+					 }
+				  }
+			  })
+		  } else {
+             _this.update(range);
+		  }
       }
     });
     _this.quill.on(_quill2.default.events.SCROLL_OPTIMIZE, function () {
